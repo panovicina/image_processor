@@ -57,16 +57,56 @@
    ```
    git@gitlab.com:cpp-pilot-hse-2021/dept-group-Ivan-Ivanov-SuperVanechka1337.git
    ```
-
-1. Проинициализируйте свой приватный репозиторий
+   Проверить правильность выполнения можно по наличию репозиториев origin и student в выводе `git remote -v`
    ```
-   git push -u student --all
+   $ git remote -v
+   origin	https://gitlab.com/levanovd/cpp-base-hse-2022 (fetch)
+   origin	https://gitlab.com/levanovd/cpp-base-hse-2022 (push)
+   student	git@gitlab.com:cpp-pilot-hse-2021/dept-group-Ivan-Ivanov-SuperVanechka1337.git (fetch)
+   student	git@gitlab.com:cpp-pilot-hse-2021/dept-group-Ivan-Ivanov-SuperVanechka1337.git (push)
    ```
 
 ## Сдача задач
 
-TODO
+Чтобы сдать задачу `task_name`, надо сделать следующие шаги:
 
+1. Перейти на ветку `main`:
+   ```
+   git checkout main
+   ```
+   
+2. Создать ветку `submits/task_name`. Имя ветки должно быть в точности таким (с учетом подстановки реального названия задачи вместо `task_name`).
+   ```
+   git checkout -b submits/task_name
+   ```
+   
+   Если у вас уже была создана ветка `submits/task_name`, вам не нужно переходить на ветку `main` и создавать новую ветку. Достаточно переключиться на неё командой 
+   ```
+   git checkout submits/task_name
+   ```
+
+   Если вы уже находитесь в ветке `submits/task_name`, начинайте сразу с 3 пункта.
+
+3. Написать код решения задачи.
+
+4. Найти измененные файлы
+   ```
+   git status
+   ```
+5. Добавить измененные файлы `file1`, `file2` и т.д. в коммит
+   ```
+   git add file1 file2
+   ```
+
+6. Закоммитить изменения. Старайтесь писать осмысленные сообщения к коммитам. Это поможет вам, когда вы захотите разобраться в истории своих изменений.
+   ```
+   git commit -m "Describe your changes here"
+   ```
+
+7. Запушить изменения в приватный репозиторий
+   ```
+   git push student
+   ```
 ## Синхронизация репозиториев
 
 Периодически мы будем обновлять репозиторий с задачами, поэтому необходимо регулярно синхронизировать содержимое общего, локального и вашего приватного репозиториев:
