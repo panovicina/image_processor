@@ -1,4 +1,5 @@
 #include "associative_operation.h"
+#include <vector>
 
 bool IsAssociative(const std::vector<std::vector<size_t>>& table) {
     for (int x = 0; x < table.size(); ++x) {
