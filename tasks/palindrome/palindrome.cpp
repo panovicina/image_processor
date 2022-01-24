@@ -17,7 +17,6 @@ bool IsPalindrome(const std::string& str) {
             return false;
         ++i;
         --j;
-    
     }
     return true;
 }
