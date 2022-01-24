@@ -22,7 +22,7 @@ bool ValidatePassword(const std::string& password) {
         if (ispunct(password[i])) {
             other = 1;
         }
-        if ((int)password[i] > 126 || (int)password[i] < 33) {
+        if (password[i] > 126 || password[i] < 33) {
             return false;
         }
     }
