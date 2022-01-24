@@ -6,7 +6,7 @@ bool ValidatePassword(const std::string& password) {
     int supper = 0;
     int digit = 0;
     int other = 0;
-    if (size(password) > 15 size(password) < 7) {
+    if (size(password) > 15 || size(password) < 7) {
         return false;
     }
     for (int i = 0; i < size(password); ++i) {
@@ -22,15 +22,12 @@ bool ValidatePassword(const std::string& password) {
         if (ispunct(password[i])) {
             other = 1;
         }
-
-        if ((int)password[i] > 126(int)password[i] < 33) {
+        if ((int)password[i] > 126 || (int)password[i] < 33) {
             return false;
         }
     }
-
     if (lower + supper + digit + other < 3) {
         return false;
     }
-
     return true;
 }
