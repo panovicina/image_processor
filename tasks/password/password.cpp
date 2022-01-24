@@ -6,7 +6,7 @@ bool ValidatePassword(const std::string& password) {
     int supper = 0;
     int digit = 0;
     int other = 0;
-    if (size(password) > 15 || size(password) < 7) {
+    if (size(password) > 14 || size(password) < 8) {
         return false;
     }
     for (int i = 0; i < size(password); ++i) {
