@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <tuple>
+
 bool CompApp(const Applicant& a, const Applicant& b) {
     return std::tie(a.points, b.student.birth_date.year, b.student.birth_date.month, b.student.birth_date.day,
                     b.student.name) > std::tie(b.points, a.student.birth_date.year, a.student.birth_date.month,
