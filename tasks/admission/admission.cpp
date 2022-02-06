@@ -2,9 +2,7 @@
 #include<tuple>
 
 bool CompApp(const Applicant& a, const Applicant& b) {
-
-    return std::tie(a.points, b.student.birth_date.year, b.student.birth_date.month, b.student.birth_date.day, b.student.name) >
-        std::tie(b.points, a.student.birth_date.year, a.student.birth_date.month, a.student.birth_date.day, a.student.name);
+    return std::tie(a.points, b.student.birth_date.year, b.student.birth_date.month, b.student.birth_date.day, b.student.name) > std::tie(b.points, a.student.birth_date.year, a.student.birth_date.month, a.student.birth_date.day, a.student.name);
 }
 AdmissionTable FillUniversities(const std::vector<University>& universities, const std::vector<Applicant>& applicants) {
     std::vector<Applicant> copy_applicants = applicants;
