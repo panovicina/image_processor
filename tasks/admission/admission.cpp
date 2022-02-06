@@ -22,7 +22,8 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
                 for (size_t k = 0; k < universities.size(); ++k) {
                     if (result_list[universities[k].name].size() < universities[k].max_students &&
                         universities[k].name == copy_applicants[i].wish_list[j]) {
-                        result_list[copy_applicants[i].wish_list[j]].push_back(&applicants[applicant_indx[copy_applicants[i].student.name]].student);
+                        result_list[copy_applicants[i].wish_list[j]].push_back(
+                            &applicants[applicant_indx[copy_applicants[i].student.name]].student);
                         enter_uni = true;
                     }
                 }
