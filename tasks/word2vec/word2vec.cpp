@@ -10,7 +10,7 @@ int VecClose(std::vector<int> v1, std::vector<int> v2) {
 }
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
                                           const std::vector<std::vector<int>>& vectors) {
-    std::vector<std::string> Result;
+    std::vector<std::string> result;
     int vc_max = 0;
     for (int i = 1; i < vectors.size(); ++i) {
         if (VecClose(vectors[0], vectors[i]) > vc_max) {
@@ -19,8 +19,8 @@ std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
     }
     for (int i = 1; i < vectors.size(); ++i) {
         if (VecClose(vectors[0], vectors[i]) == vc_max) {
-            Result.push_back(words[i]);
+            result.push_back(words[i]);
         }
     }
-    return Result;
+    return result;
 }
