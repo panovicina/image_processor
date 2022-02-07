@@ -1,8 +1,8 @@
 #include "tests_checking.h"
 #include <deque>
 
-std::vector<std::string> StudentsOrder(const std::vector<StudentAction>&student_actions,
-                                       const std::vector<size_t>&queries) {
+std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student_actions,
+                                       const std::vector<size_t>& queries) {
     std::vector<std::string> result;
     std::deque<std::string> students;
     for (size_t i = 0; i < student_actions.size(); ++i) {
