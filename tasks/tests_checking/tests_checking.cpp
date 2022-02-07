@@ -13,6 +13,8 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
             case Side::Bottom:
                 students.push_back(student_actions[i].name);
                 break;
+            default:
+                break;
         }
     }
     for (size_t i = 0; i < queries.size(); ++i) {
