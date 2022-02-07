@@ -1,7 +1,7 @@
 #include "word2vec.h"
 #include <vector>
 
-int VecClose(std::vector<int>  v1, std::vector<int> v2) {
+int VecClose(std::vector<int> v1, std::vector<int> v2) {
     int res = 0;
     for (int i = 0; i < v2.size(); ++i) {
         res += v1[i] * v2[i];
