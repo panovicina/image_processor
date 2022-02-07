@@ -9,8 +9,10 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
         switch (student_actions[i].side) {
             case Side::Top:
                 students.push_front(student_actions[i].name);
+                break;
             case Side::Bottom:
                 students.push_back(student_actions[i].name);
+                break;
         }
     }
     for (size_t i = 0; i < queries.size(); ++i) {
