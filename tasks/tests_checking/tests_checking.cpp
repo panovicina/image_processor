@@ -10,8 +10,8 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
         }
         if (student_actions[i].side == Side::Top) {
             students.resize(students.size() + 1);
-            for (size_t i = 0; i < students.size() - 1; ++i) {
-                students[i + 1] = students[i];
+            for (size_t i = students.size() - 1; i > 0; --i) {
+                students[i] = students[i - 1];
             }
             students[0] = student_actions[i].name;
         }
