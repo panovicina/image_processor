@@ -11,15 +11,19 @@ int VecClose(std::vector<int> v1, std::vector<int> v2) {
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
                                           const std::vector<std::vector<int>>& vectors) {
     std::vector<std::string> result;
-    int vc_max = VecClose(vectors[0], vectors[1]);
+    std::vector<int> close;
     for (int i = 1; i < vectors.size(); ++i) {
-        if (VecClose(vectors[0], vectors[i]) > vc_max) {
-            vc_max = VecClose(vectors[0], vectors[i]);
+        close.push_back(VecClose(vectors[0], vectors[i]));
+    }
+    int vc_max = close[0];
+    for (int i = 1; i < close.size(); ++i) {
+        if (close[i] > vc_max) {
+            vc_max = close[i];
         }
     }
-    for (int i = 1; i < vectors.size(); ++i) {
-        if (VecClose(vectors[0], vectors[i]) == vc_max) {
-            result.push_back(words[i]);
+    for (int i = 0; i < close.size(); ++i) {
+        if (close[i] == vc_max) {
+            result.push_back(words[i + 1]);
         }
     }
     return result;
