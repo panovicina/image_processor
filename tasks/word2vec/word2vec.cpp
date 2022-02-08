@@ -1,9 +1,9 @@
 #include "word2vec.h"
 #include <vector>
 
-int VecClose(std::vector<int> v1, std::vector<int> v2) {
+int VecClose(const std::vector<int>& v1, const std::vector<int>& v2) {
     int res = 0;
-    for (int i = 0; i < v2.size(); ++i) {
+    for (size_t i = 0; i < v2.size(); ++i) {
         res += v1[i] * v2[i];
     }
     return res;
@@ -11,19 +11,18 @@ int VecClose(std::vector<int> v1, std::vector<int> v2) {
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
                                           const std::vector<std::vector<int>>& vectors) {
     std::vector<std::string> result;
-    std::vector<int> close;
-    for (int i = 1; i < vectors.size(); ++i) {
-        close.push_back(VecClose(vectors[0], vectors[i]));
-    }
-    int vc_max = close[0];
-    for (int i = 1; i < close.size(); ++i) {
-        if (close[i] > vc_max) {
-            vc_max = close[i];
+    int vc_max = -99999999;
+    size_t ind = -9999;
+    for (size_t i = 1; i < vectors.size(); ++i) {
+        if (VecClose(vectors[0], vectors[i]) > vc_max) {
+            vc_max = VecClose(vectors[0], vectors[i]);
+            ind = i;
         }
     }
-    for (int i = 0; i < close.size(); ++i) {
-        if (close[i] == vc_max) {
-            result.push_back(words[i + 1]);
+    result.push_back(words[ind]);
+    for (size_t i = 1; i < vectors.size(); ++i) {
+        if (VecClose(vectors[0], vectors[i]) == vc_max && ind != i) {
+            result.push_back(words[i]);
         }
     }
     return result;
