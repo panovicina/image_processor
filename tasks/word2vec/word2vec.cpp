@@ -9,7 +9,7 @@ int VecClose(const std::vector<int>& v1, const std::vector<int>& v2) {
     return res;
 }
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
-    const std::vector<std::vector<int>>& vectors) {
+                                          const std::vector<std::vector<int>>& vectors) {
     std::vector<std::string> result;
     int vc_max = -99999999;
     int ind = -9999;
