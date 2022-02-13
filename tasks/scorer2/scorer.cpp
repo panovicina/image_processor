@@ -1,4 +1,8 @@
 #include "scorer.h"
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
 
 using StudentName = std::string;
 using TaskName = std::string;
