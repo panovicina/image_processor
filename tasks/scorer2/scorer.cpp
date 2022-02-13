@@ -13,24 +13,21 @@ void DelFromTable(const StudentName& student_name, const TaskName& task_name) {
 void AddToTable(const StudentName& student_name, const TaskName& task_name) {
     score_table[student_name].insert(task_name);
 }
-class Scorer {
-public:
-    void OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
-        DelFromTable(student_name, task_name);
-    }
-    void OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
-        AddToTable(student_name, task_name);
-    }
-    void OnMergeRequestOpen(const StudentName& student_name, const TaskName& task_name) {
-        DelFromTable(student_name, task_name);
-    }
-    void OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name) {
-        AddToTable(student_name, task_name);
-    }
-    void Reset() {
-        score_table.clear();
-    }
-    ScoreTable GetScoreTable() const {
-        return score_table;
-    }
-};
+void OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
+    DelFromTable(student_name, task_name);
+}
+void OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
+    AddToTable(student_name, task_name);
+}
+void OnMergeRequestOpen(const StudentName& student_name, const TaskName& task_name) {
+    DelFromTable(student_name, task_name);
+}
+void OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name) {
+    AddToTable(student_name, task_name);
+}
+void Reset() {
+    score_table.clear();
+}
+ScoreTable GetScoreTable() const {
+    return score_table;
+}
