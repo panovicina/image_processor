@@ -9,7 +9,12 @@ using StudentName = std::string;
 using TaskName = std::string;
 
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
-
+enum class EventType {
+    CheckFailed,
+    CheckSuccess,
+    MergeRequestOpen,
+    MergeRequestClosed,
+};
 class Scorer {
 public:
     void OnCheckFailed(const StudentName& student_name, const TaskName& task_name);
