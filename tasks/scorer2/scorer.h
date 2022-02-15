@@ -17,6 +17,8 @@ public:
     void OnMergeRequestOpen(const StudentName& student_name, const TaskName& task_name);
     void OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name);
     void Reset();
+    void DelStudents(const StudentName& student_name);
+    void Checking(const StudentName& student_name, const TaskName& task_name);
 
     ScoreTable GetScoreTable() const;
 };
