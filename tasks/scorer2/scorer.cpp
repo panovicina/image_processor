@@ -21,22 +21,22 @@ void Checking(const StudentName& student_name, const TaskName& task_name) {
 }
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
     EventType check_condition = merge[std::make_pair(student_name, task_name)];
-    check_condition == EventType::CheckFailed;
+    check_condition = EventType::CheckFailed;
     Checking(student_name, task_name);
 }
 void Scorer::OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
     EventType check_condition = merge[std::make_pair(student_name, task_name)];
-    check_condition == EventType::CheckSuccess;
+    check_condition = EventType::CheckSuccess;
     Checking(student_name, task_name);
 }
 void Scorer::OnMergeRequestOpen(const StudentName& student_name, const TaskName& task_name) {
     EventType merge_condition = merge[std::make_pair(student_name, task_name)];
-    merge_condition == EventType::MergeRequestOpen;
+    merge_condition = EventType::MergeRequestOpen;
     Checking(student_name, task_name);
 }
 void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name) {
     EventType merge_condition = merge[std::make_pair(student_name, task_name)];
-    merge_condition == EventType::MergeRequestClosed;
+    merge_condition = EventType::MergeRequestClosed;
     Checking(student_name, task_name);
 }
 void Scorer::Reset() {

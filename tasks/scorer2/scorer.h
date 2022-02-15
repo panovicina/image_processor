@@ -9,17 +9,17 @@ using StudentName = std::string;
 using TaskName = std::string;
 
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
-struct Event {
-    StudentName student_name;
-    TaskName task_name;
-    time_t time;
-    EventType event_type;
-};
 enum class EventType {
     CheckFailed,
     CheckSuccess,
     MergeRequestOpen,
     MergeRequestClosed,
+};
+struct Event {
+    StudentName student_name;
+    TaskName task_name;
+    time_t time;
+    EventType event_type;
 };
 class Scorer {
 public:
