@@ -20,12 +20,12 @@ void Scorer::Checking(const StudentName& student_name, const TaskName& task_name
     }
 }
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
-    Scorer::EventType check_condition = merge[std::make_pair(student_name, task_name)];
+    Scorer::EventType check_condition = check[std::make_pair(student_name, task_name)];
     check_condition = Scorer::EventType::CheckFailed;
     Checking(student_name, task_name);
 }
 void Scorer::OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
-    Scorer::EventType check_condition = merge[std::make_pair(student_name, task_name)];
+    Scorer::EventType check_condition = check[std::make_pair(student_name, task_name)];
     check_condition = Scorer::EventType::CheckSuccess;
     Checking(student_name, task_name);
 }
