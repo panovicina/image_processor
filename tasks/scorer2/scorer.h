@@ -21,7 +21,6 @@ public:
 
 private:
     ScoreTable score_table_;
-    std::set<TaskName> set_;
     void DelStudents(const StudentName& student_name) {
         if (score_table_[student_name].empty()) {
             score_table_.erase(student_name);
@@ -33,11 +32,10 @@ private:
     }
     void AddToTable(const StudentName& student_name, const TaskName& task_name) {
         if (score_table_.find(student_name) == score_table_.end()) {
-            set_.insert(task_name);
-            score_table_.insert({student_name, set_});
-        } else {
+            score_table_[student_name] = { task_name };
+        }
+        else {
             score_table_[student_name].insert(task_name);
         }
-        set_.clear();
     }
 };
