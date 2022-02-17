@@ -1,7 +1,7 @@
 #include "scorer.h"
 
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
-ScoreTable score_table_;
+ScoreTable score_table;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
     DelFromTable(student_name, task_name);
 }
@@ -15,8 +15,8 @@ void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskNam
     AddToTable(student_name, task_name);
 }
 void Scorer::Reset() {
-    score_table_.clear();
+    score_table.clear();
 }
 ScoreTable Scorer::GetScoreTable() const {
-    return score_table_;
+    return score_table;
 }
