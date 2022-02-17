@@ -20,23 +20,23 @@ public:
     ScoreTable GetScoreTable() const;
 
 private:
-    ScoreTable score_table;
+    ScoreTable score_table_;
     std::set<TaskName> set_;
     void DelStudents(const StudentName& student_name) {
-        if (score_table[student_name].empty()) {
-            score_table.erase(student_name);
+        if (score_table_[student_name].empty()) {
+            score_table_.erase(student_name);
         }
     }
     void DelFromTable(const StudentName& student_name, const TaskName& task_name) {
-        score_table[student_name].erase(task_name);
+        score_table_[student_name].erase(task_name);
         DelStudents(student_name);
     }
     void AddToTable(const StudentName& student_name, const TaskName& task_name) {
-        if (score_table.find(student_name) == score_table.end()) {
+        if (score_table_.find(student_name) == score_table_.end()) {
             set_.insert(task_name);
-            score_table.insert({student_name, set_});
+            score_table_.insert({student_name, set_});
         } else {
-            score_table[student_name].insert(task_name);
+            score_table_[student_name].insert(task_name);
         }
         set_.clear();
     }
