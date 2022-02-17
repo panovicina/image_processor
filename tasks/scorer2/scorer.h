@@ -19,6 +19,7 @@ public:
     void Reset();
     ScoreTable GetScoreTable() const;
 private:
+    ScoreTable score_table;
     std::set<TaskName> set;
     void Scorer::DelStudents(const StudentName& student_name) {
         if (score_table[student_name].empty()) {
