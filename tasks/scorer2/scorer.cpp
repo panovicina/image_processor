@@ -2,6 +2,7 @@
 
 ScoreTable was_failed;
 ScoreTable was_merge_open;
+ScoreTable score_table;
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
 ScoreTable score_table;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
