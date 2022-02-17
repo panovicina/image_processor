@@ -2,7 +2,6 @@
 
 ScoreTable was_failed;
 ScoreTable was_merge_open;
-ScoreTable score_table;
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
     DelFromTable(student_name, task_name);
