@@ -21,16 +21,16 @@ public:
 private:
     ScoreTable score_table;
     std::set<TaskName> set;
-    void Scorer::DelStudents(const StudentName& student_name) {
+    void DelStudents(const StudentName& student_name) {
         if (score_table[student_name].empty()) {
             score_table.erase(student_name);
         }
     }
-    void Scorer::DelFromTable(const StudentName& student_name, const TaskName& task_name) {
+    void DelFromTable(const StudentName& student_name, const TaskName& task_name) {
         score_table[student_name].erase(task_name);
         DelStudents(student_name);
     }
-    void Scorer::AddToTable(const StudentName& student_name, const TaskName& task_name) {
+    void AddToTable(const StudentName& student_name, const TaskName& task_name) {
         if (score_table.find(student_name) == score_table.end()) {
             set.insert(task_name);
             score_table.insert({ student_name, set });
