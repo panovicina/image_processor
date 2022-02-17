@@ -18,6 +18,7 @@ public:
     void OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name);
     void Reset();
     ScoreTable GetScoreTable() const;
+
 private:
     ScoreTable score_table;
     std::set<TaskName> set;
