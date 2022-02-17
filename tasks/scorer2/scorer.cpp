@@ -28,8 +28,8 @@ void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskNam
     }
 }
 void Scorer::Reset() {
-    score_table.clear();
+    score_table_.clear();
 }
 ScoreTable Scorer::GetScoreTable() const {
-    return score_table;
+    return score_table_;
 }
