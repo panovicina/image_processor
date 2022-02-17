@@ -33,7 +33,7 @@ private:
     void AddToTable(const StudentName& student_name, const TaskName& task_name) {
         if (score_table.find(student_name) == score_table.end()) {
             set.insert(task_name);
-            score_table.insert({ student_name, set });
+            score_table.insert({student_name, set});
         } else {
             score_table[student_name].insert(task_name);
         }
