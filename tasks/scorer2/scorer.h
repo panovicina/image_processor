@@ -1,9 +1,9 @@
-#pragma once
+#pragma once 
 
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
+#include <map> 
+#include <set> 
+#include <string> 
+#include <vector> 
 
 using StudentName = std::string;
 using TaskName = std::string;
@@ -20,24 +20,24 @@ public:
     ScoreTable GetScoreTable() const;
 
 private:
-    ScoreTable score_table;
-    std::set<TaskName> Set;
+    ScoreTable score_table_;
+    std::set<TaskName> Set_;
     void DelStudents(const StudentName& student_name) {
-        if (score_table[student_name].empty()) {
-            score_table.erase(student_name);
+        if (score_table_[student_name].empty()) {
+            score_table_.erase(student_name);
         }
     }
     void DelFromTable(const StudentName& student_name, const TaskName& task_name) {
-        score_table[student_name].erase(task_name);
+        score_table_[student_name].erase(task_name);
         DelStudents(student_name);
     }
     void AddToTable(const StudentName& student_name, const TaskName& task_name) {
-        if (score_table.find(student_name) == score_table.end()) {
-            Set.insert(task_name);
-            score_table.insert({student_name, Set});
+        if (score_table_.find(student_name) == score_table_.end()) {
+            Set_.insert(task_name);
+            score_table_.insert({student_name, Set_});
         } else {
-            score_table[student_name].insert(task_name);
+            score_table_[student_name].insert(task_name);
         }
-        Set.clear();
+        Set_.clear();
     }
 };
