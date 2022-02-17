@@ -3,7 +3,7 @@
 ScoreTable was_failed;
 ScoreTable was_merge_open;
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
-ScoreTable score_table_;
+ScoreTable score_table;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
     DelFromTable(student_name, task_name);
     was_failed[student_name].insert(task_name);
@@ -29,8 +29,8 @@ void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskNam
     }
 }
 void Scorer::Reset() {
-    score_table_.clear();
+    score_table.clear();
 }
 ScoreTable Scorer::GetScoreTable() const {
-    return score_table_;
+    return score_table;
 }
