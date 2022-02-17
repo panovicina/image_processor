@@ -9,6 +9,7 @@ using StudentName = std::string;
 using TaskName = std::string;
 
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
+ScoreTable score_table;
 
 class Scorer {
 public:
@@ -20,7 +21,6 @@ public:
     ScoreTable GetScoreTable() const;
 
 private:
-    ScoreTable score_table;
     void DelStudents(const StudentName& student_name) {
         if (score_table[student_name].empty()) {
             score_table.erase(student_name);
