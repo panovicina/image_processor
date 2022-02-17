@@ -1,7 +1,7 @@
 #pragma once
 
 #include <map>
-#include <set> 
+#include <set>
 #include <string>
 #include <vector>
 
