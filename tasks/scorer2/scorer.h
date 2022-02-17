@@ -1,9 +1,9 @@
-#pragma once 
+#pragma once
 
-#include <map> 
+#include <map>
 #include <set> 
-#include <string> 
-#include <vector> 
+#include <string>
+#include <vector>
 
 using StudentName = std::string;
 using TaskName = std::string;
