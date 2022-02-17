@@ -2,9 +2,6 @@
 
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
 ScoreTable score_table;
-std::map<std::pair<StudentName, TaskName>, Scorer::EventType> merge;
-std::map<std::pair<StudentName, TaskName>, Scorer::EventType> check;
-std::set<TaskName> set;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
     DelFromTable(student_name, task_name);
 }

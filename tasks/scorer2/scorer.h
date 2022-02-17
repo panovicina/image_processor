@@ -19,7 +19,7 @@ public:
     void Reset();
     ScoreTable GetScoreTable() const;
 private:
-    ScoreTable merge, check;
+    std::set<TaskName> set;
     void Scorer::DelStudents(const StudentName& student_name) {
         if (score_table[student_name].empty()) {
             score_table.erase(student_name);
