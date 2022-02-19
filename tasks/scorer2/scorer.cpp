@@ -12,8 +12,8 @@ void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task
     }
 }
 void Scorer::OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
-    if (was_merge_open[student_name].find(task_name) == was_merge_open[student_name].end() || 
-    was_merge_open.find(student_name) == was_merge_open.end()) {
+    if (was_merge_open[student_name].find(task_name) == was_merge_open[student_name].end() ||
+        was_merge_open.find(student_name) == was_merge_open.end()) {
         AddToTable(student_name, task_name);
     }
     if (was_failed.find(student_name) != was_failed.end()) {
@@ -31,8 +31,8 @@ void Scorer::OnMergeRequestOpen(const StudentName& student_name, const TaskName&
     }
 }
 void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name) {
-    if (was_failed[student_name].find(task_name) == was_failed[student_name].end() || 
-    was_failed.find(student_name) == was_failed.end()) {
+    if (was_failed[student_name].find(task_name) == was_failed[student_name].end() ||
+        was_failed.find(student_name) == was_failed.end()) {
         AddToTable(student_name, task_name);
     }
     if (was_merge_open.find(student_name) != was_merge_open.end()) {
