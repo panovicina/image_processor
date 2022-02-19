@@ -27,8 +27,12 @@ private:
         }
     }
     void DelFromTable(const StudentName& student_name, const TaskName& task_name) {
-        score_table_[student_name].erase(task_name);
-        DelStudents(student_name);
+        if (score_table_.find(student_name) != score_table_.end()) {
+            if (score_table_[student_name].find(task_name) != score_table_[student_name].end()) {
+                score_table_[student_name].erase(task_name);
+            }
+            DelStudents(student_name);
+        }
     }
     void AddToTable(const StudentName& student_name, const TaskName& task_name) {
         if (score_table_.find(student_name) == score_table_.end()) {
