@@ -12,7 +12,7 @@ void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task
     }
 }
 void Scorer::OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
-    if (was_merge_open[student_name].find(task_name) == was_merge_open[student_name].end() || 
+    if (was_merge_open[student_name].find(task_name) == was_merge_open[student_name].end() ||
         was_merge_open.find(student_name) == was_merge_open.end()) {
         AddToTable(student_name, task_name);
     }
