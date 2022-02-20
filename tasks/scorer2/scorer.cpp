@@ -43,6 +43,8 @@ void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskNam
 }
 void Scorer::Reset() {
     score_table_.clear();
+    was_failed.clear();
+    was_merge_open.clear();
 }
 ScoreTable Scorer::GetScoreTable() const {
     return score_table_;
