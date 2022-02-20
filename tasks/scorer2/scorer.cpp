@@ -1,50 +1,34 @@
 #include "scorer.h"
 
-ScoreTable was_failed;
-ScoreTable was_merge_open;
+ScoreTable check_condition;
+ScoreTable merge_condition;
 using ScoreTable = std::map<StudentName, std::set<TaskName>>;
 void Scorer::OnCheckFailed(const StudentName& student_name, const TaskName& task_name) {
-    DelFromTable(student_name, task_name);
-    if (was_failed.find(student_name) == was_failed.end()) {
-        was_failed[student_name] = {task_name};
-    } else {
-        was_failed[student_name].insert(task_name);
-    }
+    DelFromTable(check_condition, student_name, task_name);
+    DelFromTable(score_table_, student_name, task_name);
 }
 void Scorer::OnCheckSuccess(const StudentName& student_name, const TaskName& task_name) {
-    if (was_merge_open[student_name].find(task_name) == was_merge_open[student_name].end() ||
-        was_merge_open.find(student_name) == was_merge_open.end()) {
-        AddToTable(student_name, task_name);
+    AddToTable(check_condition, student_name, task_name);
+    if (merge_condition[student_name].find(task_name) == merge_condition[student_name].end()) {
+        AddToTable(score_table_, student_name, task_name);
     }
-    if (was_failed.find(student_name) != was_failed.end()) {
-        if (was_failed[student_name].find(task_name) != was_failed[student_name].end()) {
-            was_failed[student_name].erase(task_name);
-        }
-    }
+    DelStudents(score_table_);
 }
 void Scorer::OnMergeRequestOpen(const StudentName& student_name, const TaskName& task_name) {
-    DelFromTable(student_name, task_name);
-    if (was_merge_open.find(student_name) == was_merge_open.end()) {
-        was_merge_open[student_name] = {task_name};
-    } else {
-        was_merge_open[student_name].insert(task_name);
-    }
+    AddToTable(merge_condition, student_name, task_name);
+    DelFromTable(score_table_, student_name, task_name);
 }
 void Scorer::OnMergeRequestClosed(const StudentName& student_name, const TaskName& task_name) {
-    if (was_failed[student_name].find(task_name) == was_failed[student_name].end() ||
-        was_failed.find(student_name) == was_failed.end()) {
-        AddToTable(student_name, task_name);
+    DelFromTable(merge_condition, student_name, task_name);
+    if (check_condition[student_name].find(task_name) != check_condition[student_name].end()) {
+        AddToTable(score_table_, student_name, task_name);
     }
-    if (was_merge_open.find(student_name) != was_merge_open.end()) {
-        if (was_merge_open[student_name].find(task_name) != was_merge_open[student_name].end()) {
-            was_merge_open[student_name].erase(task_name);
-        }
-    }
+    DelStudents(score_table_);
 }
 void Scorer::Reset() {
     score_table_.clear();
-    was_failed.clear();
-    was_merge_open.clear();
+    check_condition.clear();
+    merge_condition.clear();
 }
 ScoreTable Scorer::GetScoreTable() const {
     return score_table_;
