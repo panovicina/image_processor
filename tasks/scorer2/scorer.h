@@ -34,7 +34,7 @@ private:
     void DelFromTable(ScoreTable& table, const StudentName& student_name, const TaskName& task_name) {
         if (table.find(student_name) != table.end()) {
             std::set<TaskName>& tasks = table.find(student_name)->second;
-            Tasks.erase(task_name);
+            tasks.erase(task_name);
         }
         DelStudents(table);
     }
