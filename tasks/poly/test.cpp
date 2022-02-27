@@ -20,6 +20,7 @@ TEST_CASE("Poly") {
     REQUIRE(Poly({{0, 2}, {2, 6}}) == poly1 + poly2);
 
     poly1 += poly2;
+    REQUIRE(poly1 == Poly({2, 0, 6}));
     poly1 -= poly2;
     REQUIRE(poly1 == poly2);
 

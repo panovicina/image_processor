@@ -41,3 +41,8 @@ add_subdirectory(tasks/unixpath2)
 add_subdirectory(tasks/poly)
 add_subdirectory(tasks/vector)
 add_subdirectory(tasks/zip)
+
+#5
+add_subdirectory(tasks/cow)
+add_subdirectory(tasks/robot)
+add_subdirectory(tasks/zip2)

@@ -1,3 +1,14 @@
+- group:    05-homework-five
+  start:    28-02-2022 00:00
+  deadline: 20-03-2022 23:59
+  tasks:
+    - task: cow
+      score: 200
+    - task: robot
+      score: 200
+    - task: zip2
+      score: 100
+
 - group:    04-homework-four
   start:    14-02-2022 00:00
   deadline: 06-03-2022 23:59
