@@ -77,6 +77,11 @@ void BitmapImage<PixelT>::Crop(size_t w_begin, size_t h_begin, size_t w_end, siz
 
 // == Crop(0, 0, height, width)
 template <typename PixelT>
+void BitmapImage<PixelT>::Crop(size_t w_end, size_t h_end) {
+    Resize(std::min(w_end, GetWidth()), std::min(h_end, GetHeight()));
+}
+
+template <typename PixelT>
 void BitmapImage<PixelT>::Resize(size_t width, size_t height) {
     data_.resize(height);
     for (auto& row : data_) {
@@ -88,6 +93,7 @@ template <typename PixelT>
 void BitmapImage<PixelT>::FlipVertical() {
     std::reverse(data_.begin(), data_.end());
 }
+
 template <typename PixelT>
 void BitmapImage<PixelT>::FlipHorizontal() {
     for (auto& row : data_) {

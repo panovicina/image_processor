@@ -32,6 +32,9 @@ public:
 
     // crops image to [h_begin, h_end), [w_begin, w_end)
     void Crop(size_t w_begin, size_t h_begin, size_t w_end, size_t h_end);
+    // == Crop(0, 0, height, width)
+    void Crop(size_t w_end, size_t h_end);
+    
     void Resize(size_t width, size_t height);
 
     void FlipVertical();
