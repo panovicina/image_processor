@@ -7,7 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 add_executable(image_processor
     image_processor.cpp
     bitmapimage.h
-    BMPutils.h
-    BMPfile.h
-    BMPfile.cpp
+    bitmapimage.cpp
+    utils.h
+    bmpi.h
+    bmpi.cpp
 )

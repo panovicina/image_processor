@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include "BMPfile.h"
+#include "bmpi.h"
 
 int main(int argc, char const *argv[]) {
     const int argv_infile_ind = 1;
@@ -15,19 +15,16 @@ int main(int argc, char const *argv[]) {
         return 0;
     }
 
-    BMP::BMPFile bmpf;
-    BMP::ReadFromFile(argv[argv_infile_ind], bmpf);
-    if (!bmpf) {
+    bmpi::BitmapImage<RGBTriple> img;
+    bmpi::ReadFromFile(argv[argv_infile_ind], img);
+    if (!img) {
         std::cout << "err reading input file" << std::endl;
         return 0;
     }
-    std::cout << bmpf.bm_file_header.ToString() << '\n' << bmpf.bm_info_header->ToString();
 
-    BMP::BitmapImage img = bmpf.bm_image;
+    img.Crop(0, 500, 1000, 1000);
 
-    img.Crop(0, 0, 1023, 1023);
-
-    if (!BMP::WriteToFile(argv[argv_outfile_ind], img)) {
+    if (!bmpi::WriteToFile(argv[argv_outfile_ind], img)) {
         std::cout << "err writing file" << std::endl;
     }
 
