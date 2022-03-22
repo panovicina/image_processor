@@ -11,4 +11,6 @@ add_executable(image_processor
     utils.h
     bmpi.h
     bmpi.cpp
+    filter.h
+    filters.cpp
 )

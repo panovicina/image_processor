@@ -31,8 +31,8 @@ PixelT& BitmapImage<PixelT>::Get(int col, int row) {
 // indexes out of range will return neares avaliable pixel
 template <typename PixelT>
 PixelT& BitmapImage<PixelT>::GetNearest(int col, int row) {
-    row = std::min(GetHeight() - 1, std::max(0, row));
-    col = std::min(GetWidth() - 1, std::max(0, col));
+    row = std::min(GetHeight() - 1, static_cast<size_t>(std::max(0, row)));
+    col = std::min(GetWidth() - 1, static_cast<size_t>(std::max(0, col)));
     return data_[row][col];
 }
 
@@ -115,4 +115,4 @@ void BitmapImage<PixelT>::Fill(PixelT& filler) {
 
 }  // namespace bmpi
 
-#endif // _BITMAPIMAGE_IMPL_
+#endif  // _BITMAPIMAGE_IMPL_
