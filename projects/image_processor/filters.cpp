@@ -2,7 +2,8 @@
 
 class CropFilter : public ImageFilter {
 public:
-    CropFilter(size_t width, size_t height) : width(width), height(height) { }
+    CropFilter(size_t width, size_t height) : width(width), height(height) {
+    }
     virtual void Apply(bmpi::BitmapImage<RGBTriple>& img) override {
         img.Crop(width, height);
     }
@@ -46,8 +47,9 @@ public:
 
 class EdgeDetectionFilter : public ImageMatrixFilter<3, 3, 1, 1> {
 public:
-    EdgeDetectionFilter(uint8_t threshold) : ImageMatrixFilter({0, -1, 0, -1, 4, -1, 0, -1, 0}), threshold(threshold) { }
-// {0, -1, 0, -1, 4, -1, 0, -1, 0}
+    EdgeDetectionFilter(uint8_t threshold) : ImageMatrixFilter({0, -1, 0, -1, 4, -1, 0, -1, 0}), threshold(threshold) {
+    }
+
     virtual void Apply(bmpi::BitmapImage<RGBTriple>& img) override {
         GrayscaleFilter().Apply(img);
 
@@ -69,16 +71,3 @@ public:
 
     uint8_t threshold{127};
 };
-
-// class NegativeFilter : public ImageMatrixFilter<3> {
-// public:
-//     virtual void Apply(bmpi::BitmapImage<RGBTriple>& img) override {
-//         for (auto& row : img.Data()) {
-//             for (RGBTriple& pix : row) {
-//                 pix.r = UCHAR_MAX - pix.r;
-//                 pix.g = UCHAR_MAX - pix.g;
-//                 pix.b = UCHAR_MAX - pix.b;
-//             }
-//         }
-//     }
-// };

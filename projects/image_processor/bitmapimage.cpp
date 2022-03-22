@@ -115,4 +115,4 @@ void BitmapImage<PixelT>::Fill(PixelT& filler) {
 
 }  // namespace bmpi
 
-#endif // _BITMAPIMAGE_IMPL_
+#endif  // _BITMAPIMAGE_IMPL_
