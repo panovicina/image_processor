@@ -14,6 +14,7 @@ enum filterCode {
     fSharpening,
     fEdgeDetection,
     fGaussianBlur,
+    fMedian,
 };
 
 filterCode GetFilterCode(std::string const &in_string) {
@@ -34,6 +35,9 @@ filterCode GetFilterCode(std::string const &in_string) {
     }
     if (in_string == "-blur") {
         return fGaussianBlur;
+    }
+    if (in_string == "-median") {
+        return fMedian;
     }
     return fWrongFilter;
 }
@@ -132,29 +136,48 @@ int main(int argc, char const *argv[]) {
             }
             case fGaussianBlur: {
                 std::string usage =
-                    "\tusage: -blur sigma\n"
+                    "\tusage: -blur sigma [kernel_radius]\n"
                     "\tsigma in range [0, 100]\n"
-                    "\tcoefs_size [1, 100] optional";
+                    "\tkernel_radius in range [1, 100] optional";
                 if (option_size != 2 && option_size != 3) {
                     std::cout << "wrong usage of -blur filter\n" << usage << std::endl;
                     break;
                 }
                 long double sigma = 0;
-                size_t coefs_size = 15;
+                size_t kernel_radius = 15;
                 if (!SafeStold(option_ptr[1], sigma) || sigma > 100 || sigma < 0) {
                     std::cout << "wrong Gaussian Blur parameters\n" << usage << std::endl;
                     break;
                 }
                 if (option_size == 3) {
-                    if (!SafeStoull(option_ptr[2], coefs_size) || coefs_size > 100 || coefs_size < 1) {
+                    if (!SafeStoull(option_ptr[2], kernel_radius) || kernel_radius > 100 || kernel_radius < 1) {
                         std::cout << "wrong Gaussian Blur parameters\n" << usage << std::endl;
                         break;
                     }
-                    std::cout << "applying Gaussian Blur " << sigma << ' ' << coefs_size << std::endl;
+                    std::cout << "applying Gaussian Blur " << sigma << ' ' << kernel_radius << std::endl;
                 } else {
                     std::cout << "applying Gaussian Blur " << sigma << std::endl;
                 }
-                filter.reset(new GaussianBlurFilter(sigma, coefs_size));
+                filter.reset(new GaussianBlurFilter(sigma, kernel_radius));
+                filter->Apply(img);
+                break;
+            }
+            case fMedian: {
+                std::string usage =
+                    "\tusage: -median kernel_radius\n"
+                    "\tkernel_radius in range [1, 5]";
+                if (option_size != 2) {
+                    std::cout << "wrong usage of -median filter\n" << usage << std::endl;
+                    break;
+                }
+                size_t kernel_radius = 1;
+                if (!SafeStoull(option_ptr[1], kernel_radius) || kernel_radius > 5 || kernel_radius < 1) {
+                    std::cout << "wrong Median Filter parameters\n" << usage << std::endl;
+                    break;
+                }
+                std::cout << "applying Median Filter " << kernel_radius << std::endl;
+
+                filter.reset(new MedianFilter(kernel_radius));
                 filter->Apply(img);
                 break;
             }

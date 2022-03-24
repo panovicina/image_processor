@@ -16,7 +16,7 @@ public:
 template <int mat_h, int mat_w, int mat_c_h, int mat_c_w>
 class ImageMatrixFilter : public ImageFilter {
 public:
-    explicit ImageMatrixFilter(std::array<int32_t, mat_h * mat_w> matr) : filter_matrix(matr){};
+    explicit ImageMatrixFilter(std::array<long double, mat_h * mat_w> matr) : filter_matrix(matr){};
 
     virtual void Apply(bmpi::BitmapImage<RGBTriple>& img) override {
         bmpi::BitmapImage<RGBTriple> prev_img = img;
@@ -24,9 +24,9 @@ public:
 
         for (int row = 0; row < static_cast<int>(img.GetHeight()); ++row) {
             for (int col = 0; col < static_cast<int>(img.GetWidth()); ++col) {
-                int32_t r = 0;
-                int32_t g = 0;
-                int32_t b = 0;
+                long double r = 0;
+                long double g = 0;
+                long double b = 0;
                 for (int m_row = 0; m_row < mat_h; ++m_row) {
                     for (int m_col = 0; m_col < mat_w; ++m_col) {
                         auto pix = prev_img.Get(col + m_col, row + m_row);
@@ -41,5 +41,5 @@ public:
     }
 
 protected:
-    std::array<int32_t, mat_h * mat_w> filter_matrix;
+    std::array<long double, mat_h * mat_w> filter_matrix;
 };
