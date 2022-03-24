@@ -28,14 +28,6 @@ PixelT& BitmapImage<PixelT>::Get(int col, int row) {
     return data_[row][col];
 }
 
-// indexes out of range will return neares avaliable pixel
-template <typename PixelT>
-PixelT& BitmapImage<PixelT>::GetNearest(int col, int row) {
-    row = std::min(GetHeight() - 1, static_cast<size_t>(std::max(0, row)));
-    col = std::min(GetWidth() - 1, static_cast<size_t>(std::max(0, col)));
-    return data_[row][col];
-}
-
 template <typename PixelT>
 std::vector<std::vector<PixelT>>& BitmapImage<PixelT>::Data() {
     return data_;
@@ -111,6 +103,16 @@ void BitmapImage<PixelT>::Fill(PixelT& filler) {
     std::vector<PixelT> filled_row(GetWidth());
     std::fill(filled_row.begin(), filled_row.end(), filler);
     std::fill(data_.begin(), data_.end(), filled_row);
+}
+
+template <typename PixelT>
+void BitmapImage<PixelT>::AddColoredIndent(int32_t top, int32_t bottom, int32_t left, int32_t right) {
+    for (auto& row : data_) {
+        row.insert(row.begin(), left, *row.begin());
+        row.insert(row.end(), right, *row.rbegin());
+    }
+    data_.insert(data_.begin(), top, *data_.begin());
+    data_.insert(data_.end(), bottom, *data_.rbegin());
 }
 
 }  // namespace bmpi
