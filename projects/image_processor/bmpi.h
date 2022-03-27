@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "utils.h"
 #include "bitmapimage.h"
+#include "utils.h"
 
 namespace bmpi {
 

@@ -1,8 +1,8 @@
-#include "filter.h"
-
 #include <climits>
 #include <cmath>
 #include <numeric>
+
+#include "filter.h"
 
 class CropFilter : public ImageFilter {
 public:
@@ -55,7 +55,7 @@ public:
         long double dividor = 1 / (sqrtl(2 * pi) * sigma);
 
         // compute coefs
-        std::vector <long double> gaussian_coefs;
+        std::vector<long double> gaussian_coefs;
 
         for (int i = 0; i < max_coefs; ++i) {
             long double res = dividor * expl(-((i * i) / (2 * sigma * sigma)));
@@ -73,7 +73,7 @@ public:
         std::copy_n(gaussian_coefs.begin(), margin, gaussian_coefs.rbegin());
 
         // normalize
-        long double sum = std::accumulate(gaussian_coefs.begin(), gaussian_coefs.end(), (long double)0);
+        long double sum = std::accumulate(gaussian_coefs.begin(), gaussian_coefs.end(), static_cast<long double>(0));
         for (auto& el : gaussian_coefs) {
             el /= sum;
         }
@@ -133,11 +133,11 @@ public:
         bmpi::BitmapImage<RGBTriple> also_img = img;
 
         // apply to each row
-       for (int row = window_radius; row < static_cast<int>(img.GetHeight()) - window_radius; ++row) {
+        for (int row = window_radius; row < static_cast<int>(img.GetHeight()) - window_radius; ++row) {
             for (int col = 0; col < static_cast<int>(img.GetWidth()); ++col) {
-                std::vector<uint8_t > r;
-                std::vector<uint8_t > g;
-                std::vector<uint8_t > b;
+                std::vector<uint8_t> r;
+                std::vector<uint8_t> g;
+                std::vector<uint8_t> b;
                 for (int m_ind = 0; m_ind < window_radius * 2 + 1; ++m_ind) {
                     auto pix = img.Get(col, row + m_ind - window_radius);
                     r.push_back(pix.r);
@@ -157,11 +157,11 @@ public:
         img = also_img;
 
         // apply to each row
-       for (int row = 0; row < static_cast<int>(img.GetHeight()); ++row) {
+        for (int row = 0; row < static_cast<int>(img.GetHeight()); ++row) {
             for (int col = window_radius; col < static_cast<int>(img.GetWidth()) - window_radius; ++col) {
-                std::vector<uint8_t > r;
-                std::vector<uint8_t > g;
-                std::vector<uint8_t > b;
+                std::vector<uint8_t> r;
+                std::vector<uint8_t> g;
+                std::vector<uint8_t> b;
                 for (int m_ind = 0; m_ind < window_radius * 2 + 1; ++m_ind) {
                     auto pix = also_img.Get(col + m_ind - window_radius, row);
                     r.push_back(pix.r);
