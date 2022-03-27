@@ -1,3 +1,52 @@
+## Компиляция
+
+`cmake -B build -S . -D CMAKE_BUILD_TYPE=Release`
+
+`cmake --build build `
+
+## Фильтры
+
+Crop
+
+`-crop width height`
+
+Grayscale
+
+`-gs`
+
+Negative
+
+`-neg`
+
+Sharpening
+
+`-sharp`
+
+EdgeDetection
+
+`-edge threshold`
+
+GaussianBlur
+
+`-blur sigma [kernel_radius]`
+
+Median
+`-median kernel_radius`
+
+## Примеры
+
+`./build/image_processor ./examples/example.bmp out.bmp -gs`
+
+`./build/image_processor ./examples/corrupted.bmp out.bmp -median 3`
+
+`./build/image_processor ./examples/girl_corrupted.bmp out.bmp -median 2 -edge 15`
+
+`./build/image_processor ./examples/girl_corrupted.bmp out.bmp -median 3`
+
+`./build/image_processor ./examples/example.bmp out.bmp -blur 1 -sharp -sharp -sharp`
+
+`./build/image_processor ./examples/example.bmp out.bmp -blur 10`
+
 # Графические фильтры (image_processor)
 
 В этом задании требуется реализовать консольное приложение,
